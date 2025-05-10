@@ -1,32 +1,50 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useCurrentAccount } from "@mysten/dapp-kit";
+import { ColoredAddress } from "./Coloring";
 
 export default function Home() {
-  // 三個 bool 狀態
-  const [coloring, setColoring] = useState(false);
+  const account = useCurrentAccount();
+  const [coloring, setColoring] = useState(true);
   const [simplify, setSimplify] = useState(false);
   const [difference, setDifference] = useState(false);
+  const [offset, setOffset] = useState(0);
 
-  // 假地址數據
-  const addresses = [
-    "0xf783607f6ffff1bba81c7e671376f0addc1d5d48b5799d9121f1768f2c80a44e",
-    "0xf783607f6ffff1bba81c7e671376f0addc1d5d48b5799d9121f1768f2c80a44e",
-    "0xf783607f6ffff1bba81c7e671376f0addc1d5d48b5799d9121f1768f2c80a44e",
-    "0xf783607f6ffff1bba81c7e671376f0addc1d5d48b5799d9121f1768f2c80a44e",
-  ];
+  // baseAddress 來自錢包
+  const baseAddress = account?.address || "please connect wallet";
 
-  // 地址簡化函數
-  function displayAddress(addr: string) {
-    if (simplify) {
-      return addr.slice(0, 4) + "......" + addr.slice(-4);
+  // 需要修改的位（不含0x）
+  const modifyPositions = [7, 26, 43];
+
+  // 根據 baseAddress 和 offset 生成 4 行地址
+  function getAddresses() {
+    if (!account?.address) {
+      return Array(4).fill("please connect wallet");
     }
-    return addr;
+    const addrs = [baseAddress];
+    for (let i = 0; i < 3; i++) {
+      const pos = modifyPositions[i] + offset;
+      let arr = baseAddress.slice(2).split("");
+      const realPos = pos % arr.length;
+      const oldChar = arr[realPos];
+      arr[realPos] = oldChar === "1" ? "0" : "1";
+      addrs.push("0x" + arr.join(""));
+    }
+    return addrs;
+  }
+  const addresses = getAddresses();
+
+  // new address 按鈕功能
+  function handleNewAddress() {
+    if (account?.address) {
+      setOffset(offset + 1);
+    }
   }
 
   return (
     <div className=" w-full flex items-center justify-center" style={{ fontFamily: 'Indie Flower, cursive' }}>
-      <div className="mt-12 w-[90vw] max-w-7xl min-h-[70vh] rounded-3xl flex flex-row items-center justify-between p-12 shadow-xl">
+      <div className="mb-20 w-[90vw] max-w-8xl min-h-[70vh] rounded-3xl flex flex-row items-center justify-between p-12 shadow-xl">
         {/* 左側 SafeColors 標題與介紹 */}
-        <div className="mr flex-1 flex flex-col items-left justify-center">
+        <div className="ml-20 flex-1 flex flex-col items-left justify-center">
           <h1 className="font-bold text-6xl text-white mb-8">Safecolors</h1>
           <div className="text-2xl text-white text-left leading-relaxed whitespace-pre-line">
             TextTextTextTextTextTextTextTextTextText
@@ -38,26 +56,40 @@ export default function Home() {
           </div>
         </div>
         {/* 右側毛玻璃區 */}
-        <div className="ml-40 flex-1 flex flex-col items-center justify-center">
+        <div className="ml-20 flex-1 flex flex-col items-center justify-center">
           <div className="max-w-lg min-h-[340px] min-w-[669px] bg-gray-300/80 backdrop-blur-lg border-2 border-black rounded-2xl p-6 shadow-lg flex flex-col justify-between">
             {/* 地址列表 */}
             <div className="flex flex-col gap-3 mb-2 ">
-              {addresses.map((addr, idx) => (
-                <div
-                  key={idx}
-                  className={`rounded-xl border-2 border-black px-4 py-2 text-base font-mono text-black bg-white w-full ${simplify ? 'flex justify-center items-center text-lg' : 'break-all'}`}
-                  style={simplify ? { letterSpacing: '2px' } : {}}
-                >
-                  {displayAddress(addr)}
-                </div>
-              ))}
+              {addresses.map((addr, idx) => {
+                const diffPos = idx > 0 ? (modifyPositions[idx - 1] + offset) % (baseAddress.length - 2) : null;
+                return (
+                  <div
+                    key={idx}
+                    className={`rounded-xl border-2 border-black px-4 py-2 text-base font-mono bg-white w-full flex justify-center items-center`}
+                    style={simplify ? { letterSpacing: '2px' } : {}}
+                  >
+                    <ColoredAddress
+                      address={addr}
+                      idx={idx}
+                      coloring={coloring}
+                      simplify={simplify}
+                      difference={difference}
+                      diffPos={diffPos}
+                    />
+                  </div>
+                );
+              })}
             </div>
             {/* 三個 bool 按鈕 + new address 水平排列 */}
             <div className="flex flex-row items-center justify-between w-full mt-2 gap-1">
               <BoolButton label="coloring" value={coloring} onClick={() => setColoring(v => !v)} />
               <BoolButton label="simplify" value={simplify} onClick={() => setSimplify(v => !v)} />
               <BoolButton label="difference" value={difference} onClick={() => setDifference(v => !v)} />
-              <button className="ml-2 px-4 py-2 rounded-xl border-2 border-black bg-white text-xl text-black font-bold shadow transition-all duration-200 min-w-[180px]">
+              <button 
+                className={`ml-2 px-4 py-2 rounded-xl border-2 border-black text-xl text-black font-bold shadow transition-all duration-200 min-w-[180px] ${!account?.address ? 'opacity-50 cursor-not-allowed' : 'bg-white hover:bg-gray-100'}`} 
+                onClick={handleNewAddress}
+                disabled={!account?.address}
+              >
                 new address
               </button>
             </div>
@@ -82,4 +114,4 @@ function BoolButton({ label, value, onClick }: { label: string; value: boolean; 
       </span>
     </button>
   );
-}
+} 
