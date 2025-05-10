@@ -9,44 +9,45 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
+
 const initialNodes = [
   {
     id: '1',
     type: 'input',
-    data: { label: 'sha256' },
-    position: { x: 400, y: 10 },
-    style: { width: 505, height: 40, fontSize: 14 },
+    data: { label: 'Address: 0xddfa241c39ba6085ae6e1d179dce779d88779265d43d1d14a876297bd9eda6a8' },
+    position: { x: 50, y: 0 },
+    style: { width: 540, height: 50, fontSize: 14 },
     sourcePosition: Position.Bottom,
     targetPosition: Position.Top,
   },
   {
     id: '2',
-    data: { label: 'c809f099167e611bd4b6c4d71fdfb188f729590cae1134c69faa33e5f0814437' },
-    position: { x: 185, y: 100 },
-    style: { width: 430, height: 40 },
+    data: { label: 'Sha256 Hash： f91407ce80671193ba60079572497b74272422e37e20bf5479ff80ca90619ebe' },
+    position: { x: 105, y: 80 },
+    style: { width: 430, height: 50 },
     sourcePosition: Position.Bottom,
     targetPosition: Position.Top,
   },
   {
     id: '3',
-    data: { label: '809f099167e611bd4b6c4d71fdfb188f729590cae1134c6' },
-    position: { x: 235, y: 200 },
-    style: { width: 330, height: 40 },
+    data: { label: 'Take the top 48： f91407ce80671193ba60079572497b74272422e37e20bf54' },
+    position: { x: 155, y: 160 },
+    style: { width: 330, height: 50 },
     sourcePosition: Position.Bottom,
     targetPosition: Position.Top,
   },
   {
     id: '4',
-    data: { label: 'Convert to RGB' },
-    position: { x: 350, y: 300 },
-    style: { width: 600, height: 40 },
+    data: { label: 'RGB： [#f91407] [#ce8067] [#1193ba] [#600795] ...... [#72497b] [#742724] [#22e37e] [#20bf54]' },
+    position: { x: 45, y: 240 },
+    style: { width: 550, height: 40 ,fontSize: 12},
     sourcePosition: Position.Bottom,
     targetPosition: Position.Top,
   },
   {
     id: '5',
     data: { label: 'coloring' },
-    position: { x: 700, y: 200 },
+    position: { x: 170, y: 320 },
     style: { width: 300, height: 40 },
     sourcePosition: Position.Bottom,
     targetPosition: Position.Top,
@@ -54,7 +55,7 @@ const initialNodes = [
   {
     id: '6',
     data: { label: 'Result' },
-    position: { x: 700, y: 100 },
+    position: { x: 170, y: 400 },
     style: { width: 300, height: 40 },
     sourcePosition: Position.Bottom,
     targetPosition: Position.Top,
@@ -94,12 +95,6 @@ const initialEdges = [
     target: '6',
     markerEnd: { type: MarkerType.ArrowClosed },
   },
-  {
-    id: 'e6-1',
-    source: '6',
-    target: '1',
-    markerEnd: { type: MarkerType.ArrowClosed },
-  },
 ];
 
 const Try = () => {
@@ -122,22 +117,15 @@ const Try = () => {
   );
 
   return (
-    <>
-    <h1 style={{
-        position: 'absolute',
-        top: 10,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        fontSize: 32,
-        zIndex: 10,
-        margin: 0,
-      }}>
-        流程圖：安全色生成
+    <div className='flex flex-col'>
+    <h1 className='text-center text-5xl'>
+        Try
       </h1>
     <div style={{ width: '80vw', height: '80vh', position: 'relative' }}>
       
         
       <button
+        className='text-black'
         style={{
           position: 'absolute',
           top: 20,
@@ -152,7 +140,7 @@ const Try = () => {
         }}
         onClick={onRestore}
       >
-        還原
+        Restroe
       </button>
       <div 
       className='justify-center'
@@ -168,7 +156,7 @@ const Try = () => {
         </ReactFlow>
       </div>
     </div>
-    </>
+    </div>
   );
 };
 
