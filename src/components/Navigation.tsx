@@ -36,7 +36,7 @@ export function Navigation() {
 
   return (
     <div className="w-full">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-2 border-black rounded-3xl m-2 px-6 py-2 flex items-center justify-between font-handwriting"
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-2 border-black rounded-3xl m-2 px-6 flex items-center justify-between font-handwriting"
         style={{ fontFamily: 'Indie Flower, cursive' }}
       >
         {/* Logo區域 */}
