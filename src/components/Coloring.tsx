@@ -19,7 +19,7 @@ export function ColoredAddress({ address, idx, coloring, simplify, difference, d
   const addrArr = address.slice(2).split("");
 
   return (
-    <span className="font-mono">
+    <span className="font-mono font-bold">
       <span style={{ color: "#000" }}>0x</span>
       {addrArr.map((c, i) => {
         const underline = difference && idx > 0 && i === diffPos;

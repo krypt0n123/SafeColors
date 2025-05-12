@@ -28,7 +28,7 @@ function Hash1Node({ id, data }: NodeProps<Node<NodeData>>) {
   }, [getNode, updateNodeData, id]);
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
+    <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 min-w-[470px]">
       <Handle
         type="target"
         position={Position.Top}

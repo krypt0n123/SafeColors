@@ -16,12 +16,14 @@ import AddressNode from '../components/Nodes/AddressNode';
 import HashNode from '../components/Nodes/HashNode';
 import Hash1Node from '../components/Nodes/Hash1Node';
 import GroupNode from '../components/Nodes/GroupNode';
- 
+import ColorAddressNode from '../components/Nodes/ColorAddressNode';
+
 const nodeTypes = {
   address: AddressNode,
   hash: HashNode,
   hash1: Hash1Node,
   group: GroupNode,
+  colorAddress: ColorAddressNode,
 };
  
 const initialNodes = [
@@ -53,28 +55,43 @@ const initialNodes = [
     data: { text: '' },
     position: { x: 0, y: 450 },
   },
+  {
+    id: '5',
+    type: 'colorAddress',
+    data: { text: '' },
+    position: { x: 0, y: 600 },
+  },
 ];
- 
-const initialEdges = [
+
+const initialEdges: Edge[] = [
   {
     id: 'e1-2',
     source: '1',
     target: '2',
-    type: 'smoothstep',
     animated: true,
   },
   {
     id: 'e2-3',
     source: '2',
     target: '3',
-    type: 'smoothstep',
     animated: true,
   },
   {
     id: 'e3-4',
     source: '3',
     target: '4',
-    type: 'smoothstep',
+    animated: true,
+  },
+  {
+    id: 'e1-5',
+    source: '1',
+    target: '5',
+    animated: true,
+  },
+  {
+    id: 'e3-5',
+    source: '3',
+    target: '5',
     animated: true,
   },
 ];
@@ -82,10 +99,10 @@ const initialEdges = [
 const CustomNodeFlow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
- 
+
   const onConnect: OnConnect = useCallback(
-    (connection) => setEdges((eds) => addEdge(connection, eds)),
-    [setEdges],
+    (params) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
   );
 
   const handleRestore = useCallback(() => {
@@ -95,7 +112,7 @@ const CustomNodeFlow = () => {
  
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-6xl font-bold mb-4">Try</h1>
+      <h1 className="text-6xl font-bold mb-4" style={{ fontFamily: 'Indie Flower, cursive' }}>Try</h1>
       <div style={{ width: '80vw', height: '80vh' }}>
         <div className="absolute top-4 right-4 z-10">
         </div>
@@ -108,7 +125,7 @@ const CustomNodeFlow = () => {
           nodeTypes={nodeTypes}
           fitView
           style={{ backgroundColor: "#F7F9FB" }}
-          >
+        >
           <Controls />
           <Background />
           <div className="absolute top-4 right-4 z-10">

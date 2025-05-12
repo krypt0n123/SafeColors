@@ -17,7 +17,7 @@ function AddressNode({ id, data }: NodeProps<Node<{ text: string }>>) {
         className="w-3 h-3 bg-blue-500"
       />
       <div className="text-sm font-medium text-gray-700 mb-2">Address:</div>
-      <div>
+      <div className="text-white">
         <input
           onChange={handleInputChange}
           value={data.text}

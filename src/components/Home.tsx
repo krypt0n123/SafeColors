@@ -42,11 +42,11 @@ export default function Home() {
 
   return (
     <div className=" w-full flex items-center justify-center" style={{ fontFamily: 'Indie Flower, cursive' }}>
-      <div className="mb-20 w-[90vw] max-w-8xl min-h-[70vh] rounded-3xl flex flex-row items-center justify-between p-12 shadow-xl">
+      <div className=" w-[90vw] max-w-8xl min-h-[70vh] rounded-3xl flex flex-row items-center justify-between p-12 shadow-xl">
         {/* 左側 SafeColors 標題與介紹 */}
         <div className="ml-20 flex-1 flex flex-col items-left justify-center">
-          <h1 className="font-bold text-6xl text-white mb-8">Safecolors</h1>
-          <div className="text-2xl text-white text-left leading-relaxed whitespace-pre-line">
+          <h1 className="font-bold text-7xl mb-8">Safecolors</h1>
+          <div className="text-3xl text-left leading-relaxed whitespace-pre-line">
             TextTextTextTextTextTextTextTextTextText
             TextTextTextTextTextTextTextText
             TextTextTextTextTextTextTextText
@@ -57,15 +57,15 @@ export default function Home() {
         </div>
         {/* 右側毛玻璃區 */}
         <div className="ml-20 flex-1 flex flex-col items-center justify-center">
-          <div className="max-w-lg min-h-[340px] min-w-[669px] bg-gray-300/80 backdrop-blur-lg border-2 border-black rounded-2xl p-6 shadow-lg flex flex-col justify-between">
+          <div className="min-h-[400px] min-w-[900px] bg-gray-300/80 backdrop-blur-lg border-2 border-black rounded-2xl p-9 shadow-lg flex flex-col justify-between">
             {/* 地址列表 */}
-            <div className="flex flex-col gap-3 mb-2 ">
+            <div className="flex flex-col gap-4 mb-4">
               {addresses.map((addr, idx) => {
                 const diffPos = idx > 0 ? (modifyPositions[idx - 1] + offset) % (baseAddress.length - 2) : null;
                 return (
                   <div
                     key={idx}
-                    className={`rounded-xl border-2 border-black px-4 py-2 text-base font-mono bg-white w-full flex justify-center items-center`}
+                    className={`rounded-xl border-2 border-black px-6 py-3 text-xl font-mono bg-white w-full flex justify-center items-center`}
                     style={simplify ? { letterSpacing: '2px' } : {}}
                   >
                     <ColoredAddress
@@ -86,7 +86,7 @@ export default function Home() {
               <BoolButton label="simplify" value={simplify} onClick={() => setSimplify(v => !v)} />
               <BoolButton label="difference" value={difference} onClick={() => setDifference(v => !v)} />
               <button 
-                className={`ml-2 px-4 py-2 rounded-xl border-2 border-black text-xl text-black font-bold shadow transition-all duration-200 min-w-[180px] ${!account?.address ? 'opacity-50 cursor-not-allowed' : 'bg-white hover:bg-gray-100'}`} 
+                className={`ml-2 px-4 py-2 rounded-xl border-2 border-black text-xl text-black font-bold shadow transition-all duration-200 min-w-[180px] ${!account?.address ? 'opacity-50 cursor-not-allowed' : 'bg-white hover:bg-gray-200'}`} 
                 onClick={handleNewAddress}
                 disabled={!account?.address}
               >
@@ -105,11 +105,11 @@ function BoolButton({ label, value, onClick }: { label: string; value: boolean; 
   return (
     <button
       onClick={onClick}
-      className={`flex items-center justify-between px-4 py-2 rounded-xl border-2 border-black text-lg text-black font-bold shadow transition-all duration-200 min-w-[120px] bg-white`}
+      className={`flex items-center justify-between px-6 py-2 rounded-xl border-2 border-black text-2xl text-black font-bold shadow transition-all duration-200 bg-white`}
       style={{ fontFamily: 'Indie Flower, cursive' }}
     >
       <span>{label}</span>
-      <span className="ml-2 w-6 h-6 rounded-md border-2 border-black flex items-center justify-center bg-white">
+      <span className="ml-3 w-6 h-6 rounded-md border-2 border-black flex items-center justify-center bg-white">
         {value ? <span className="text-2xl leading-none">✔</span> : null}
       </span>
     </button>
