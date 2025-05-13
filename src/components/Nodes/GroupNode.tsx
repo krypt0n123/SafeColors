@@ -35,7 +35,7 @@ function GroupNode({ id, data }: NodeProps<Node<NodeData>>) {
   const renderGroups = () => {
     if (!data.text) {
       return (
-        <div className="text-gray-400 font-mono">
+        <div className="text-base text-left font-mono justify-center">
           Waiting for hash...
         </div>
       );
@@ -47,7 +47,7 @@ function GroupNode({ id, data }: NodeProps<Node<NodeData>>) {
         {groups.map((group, index) => (
           <div
             key={index}
-            className="flex flex-col px-3 py-2 bg-gray-700 text-white rounded-md text-sm font-mono"
+            className="flex flex-col px-3 py-2 bg-gray-700 text-white text-sm font-bold rounded-md font-mono"
             style={{ backgroundColor: `#${group}` }}
           >
             #{group}
@@ -60,14 +60,17 @@ function GroupNode({ id, data }: NodeProps<Node<NodeData>>) {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 min-w-[710px]">
       <Handle
+        id="d-top"
         type="target"
         position={Position.Top}
+        className="w-3 h-3 bg-blue-500"
       />
-      <div className="text-sm font-medium text-gray-700 mb-2 text-left">RGB:</div>
-      <div className="w-full px-3 py-3 border border-gray-300 bg-gray-800 rounded-md text-white font-mono">
+      <div className="text-base font-medium text-gray-700 mb-2 text-left">RGB:</div>
+      <div className="w-full px-3 py-3 border border-gray-300 bg-gray-800 rounded-md text-white font-mono min-h-[63px]">
         {renderGroups()}
       </div>
       <Handle
+        id="d-bottom"
         type="source"
         position={Position.Bottom}
         className="w-3 h-3 bg-blue-500"

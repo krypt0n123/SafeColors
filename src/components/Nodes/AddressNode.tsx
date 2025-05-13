@@ -10,13 +10,8 @@ function AddressNode({ id, data }: NodeProps<Node<{ text: string }>>) {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
-      <Handle
-        type="target"
-        position={Position.Top}
-        className="w-3 h-3 bg-blue-500"
-      />
-      <div className="text-sm font-medium text-gray-700 mb-2">Address:</div>
+    <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 min-w-[640px]">
+      <div className="text-xl font-medium text-gray-700 mb-2">Address:</div>
       <div className="text-white">
         <input
           onChange={handleInputChange}
@@ -26,6 +21,13 @@ function AddressNode({ id, data }: NodeProps<Node<{ text: string }>>) {
         />
       </div>
       <Handle
+        id="a-top"
+        type="target"
+        position={Position.Top}
+        className="w-3 h-3 bg-blue-500"
+      />
+      <Handle
+        id="a-bottom"
         type="source"
         position={Position.Bottom}
         className="w-3 h-3 bg-blue-500"

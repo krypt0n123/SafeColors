@@ -2,12 +2,11 @@ import { useCallback } from 'react';
 import {
   ReactFlow,
   Controls,
-  addEdge,
   useNodesState,
   useEdgesState,
-  Background,
-  type Edge,
-  type OnConnect,
+  Background as FlowBackground,
+  Edge,
+  MarkerType,
 } from '@xyflow/react';
  
 import '@xyflow/react/dist/style.css';
@@ -53,7 +52,7 @@ const initialNodes = [
     id: '4',
     type: 'group',
     data: { text: '' },
-    position: { x: 0, y: 450 },
+    position: { x: 0, y: 430 },
   },
   {
     id: '5',
@@ -63,47 +62,16 @@ const initialNodes = [
   },
 ];
 
-const initialEdges: Edge[] = [
-  {
-    id: 'e1-2',
-    source: '1',
-    target: '2',
-    animated: true,
-  },
-  {
-    id: 'e2-3',
-    source: '2',
-    target: '3',
-    animated: true,
-  },
-  {
-    id: 'e3-4',
-    source: '3',
-    target: '4',
-    animated: true,
-  },
-  {
-    id: 'e1-5',
-    source: '1',
-    target: '5',
-    animated: true,
-  },
-  {
-    id: 'e3-5',
-    source: '3',
-    target: '5',
-    animated: true,
-  },
+const initialEdges = [
+  { id: 'e1-2', source: '1', target: '2', sourceHandle: 'a-bottom', targetHandle: 'b-top', animated: false, type: 'default' },
+  { id: 'e2-3', source: '2', target: '3', sourceHandle: 'b-bottom', targetHandle: 'c-top', animated: false, type: 'default' },
+  { id: 'e3-4', source: '3', target: '4', sourceHandle: 'c-bottom', targetHandle: 'd-top', animated: false, type: 'default' },
+  { id: 'e4-5', source: '4', target: '5', sourceHandle: 'd-bottom', targetHandle: 'e-top', animated: false, type: 'default' },
 ];
  
 const CustomNodeFlow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
-  const onConnect: OnConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
-  );
 
   const handleRestore = useCallback(() => {
     setNodes(initialNodes);
@@ -111,27 +79,24 @@ const CustomNodeFlow = () => {
   }, [setNodes, setEdges]);
  
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-6xl font-bold mb-4" style={{ fontFamily: 'Indie Flower, cursive' }}>Try</h1>
-      <div style={{ width: '80vw', height: '80vh' }}>
-        <div className="absolute top-4 right-4 z-10">
-        </div>
+    <div className="mt-20 flex flex-col items-center">
+      <h1 className="text-6xl font-bold mb-4 text-white text-mono">Try</h1>
+      <div style={{ width: '80vw', height: '80vh' }} className="bg-gray-900/80 backdrop-blur-lg rounded-xl shadow-2xl border border-white/10">
         <ReactFlow
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
           nodeTypes={nodeTypes}
           fitView
-          style={{ backgroundColor: "#F7F9FB" }}
-        >
-          <Controls />
-          <Background />
+          className="bg-transparent"
+          >
+          <Controls className="bg-white/5 backdrop-blur-sm border border-white/10" />
+          <FlowBackground className="bg-transparent" />
           <div className="absolute top-4 right-4 z-10">
             <button
               onClick={handleRestore}
-              className="px-4 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition-colors shadow-md"
+              className="px-4 py-2 bg-pink-500/80 backdrop-blur-sm text-white rounded-md hover:bg-pink-600 transition-colors shadow-md border border-white/10"
             >
               Restore
             </button>

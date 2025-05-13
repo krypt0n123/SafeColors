@@ -41,18 +41,19 @@ export default function Home() {
   }
 
   return (
-    <div className=" w-full flex items-center justify-center" style={{ fontFamily: 'Indie Flower, cursive' }}>
-      <div className=" w-[90vw] max-w-8xl min-h-[70vh] rounded-3xl flex flex-row items-center justify-between p-12 shadow-xl">
+    <div className=" w-full flex items-center justify-center text-mono">
+      <div className=" w-[90vw] max-w-8xl min-h-[70vh] rounded-3xl flex flex-row items-center justify-between bg-gray-900/80 backdrop-blur-lg p-12 shadow-xl">
         {/* 左側 SafeColors 標題與介紹 */}
-        <div className="ml-20 flex-1 flex flex-col items-left justify-center">
-          <h1 className="font-bold text-7xl mb-8">Safecolors</h1>
+        <div className="ml-40 flex-1 flex flex-col items-left justify-center">
+          <h1
+            className="font-bold text-7xl mb-8 bg-gradient-to-r from-[#4dabf7] via-[#a18cd1] to-[#fbc2eb] bg-clip-text text-transparent">
+            Safecolors
+          </h1>
           <div className="text-3xl text-left leading-relaxed whitespace-pre-line">
-            TextTextTextTextTextTextTextTextTextText
-            TextTextTextTextTextTextTextText
-            TextTextTextTextTextTextTextText
-            TextTextTextTextTextTextTextText
-            TextTextTextTextTextTextTextText
-            TextTextTextTextTextTextTextText
+          This tool by wallet address hash into the unique color combination. 
+          Users can quickly distinguish different addresses through color combinations,
+          simplifies the wallet address alignment process, 
+          effectively resist similar to address safety concerns such as fishing.
           </div>
         </div>
         {/* 右側毛玻璃區 */}
@@ -86,7 +87,7 @@ export default function Home() {
               <BoolButton label="simplify" value={simplify} onClick={() => setSimplify(v => !v)} />
               <BoolButton label="difference" value={difference} onClick={() => setDifference(v => !v)} />
               <button 
-                className={`ml-2 px-4 py-2 rounded-xl border-2 border-black text-xl text-black font-bold shadow transition-all duration-200 min-w-[180px] ${!account?.address ? 'opacity-50 cursor-not-allowed' : 'bg-white hover:bg-gray-200'}`} 
+                className={`ml-2 px-4 py-2 rounded-xl border-2 border-black text-2xl text-black font-bold shadow transition-all duration-200 min-w-[180px] ${!account?.address ? 'opacity-50 cursor-not-allowed' : 'bg-white hover:bg-gray-200'}`} 
                 onClick={handleNewAddress}
                 disabled={!account?.address}
               >

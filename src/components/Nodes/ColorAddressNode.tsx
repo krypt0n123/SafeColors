@@ -60,13 +60,13 @@ function ColorAddressNode({ id, data }: NodeProps<Node<NodeData>>) {
 
     return (
       <div className="font-mono">
-        <span className="text-gray-400">0x</span>
+        <span className="text-white">0x</span>
         {firstFour.split('').map((char, index) => (
           <span key={`first-${index}`} style={{ color: `#${colorGroups[index]}` }}>
             {char}
           </span>
         ))}
-        <span className="text-gray-400">{middlePart}</span>
+        <span className="text-white">{middlePart}</span>
         {lastFour.split('').map((char, index) => (
           <span key={`last-${index}`} style={{ color: `#${colorGroups[index + 4]}` }}>
             {char}
@@ -77,21 +77,18 @@ function ColorAddressNode({ id, data }: NodeProps<Node<NodeData>>) {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 min-w-[470px]">
+    <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 min-w-[640px]">
       <Handle
+        id="e-top"
         type="target"
         position={Position.Top}
         className="w-3 h-3 bg-blue-500"
       />
-      <div className="text-sm font-medium text-gray-700 mb-2">Colored Address:</div>
+      <div className="text-base font-medium text-gray-700 mb-2">Colored Address:</div>
       <div className="w-full px-3 py-2 border border-gray-300 bg-gray-800 rounded-md text-white font-mono">
         {renderColoredAddress()}
       </div>
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        className="w-3 h-3 bg-blue-500"
-      />
+      
     </div>
   );
 }

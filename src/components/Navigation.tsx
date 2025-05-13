@@ -1,6 +1,6 @@
 import { ConnectButton } from "@mysten/dapp-kit";
 import { useState, useEffect } from "react";
-import logo from '../asserts/logo.svg';
+import logo from '/public/logo.svg';
 
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
@@ -36,9 +36,7 @@ export function Navigation() {
 
   return (
     <div className="w-full">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-2 border-black rounded-3xl m-2 px-6 flex items-center justify-between font-handwriting"
-        style={{ fontFamily: 'Indie Flower, cursive' }}
-      >
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-2 border-black rounded-3xl m-2 px-6 flex items-center justify-between font-handwriting text-mono">
         {/* Logo區域 */}
         <div className="flex items-center">
             <div className="w-32 h-15 bg-white flex items-center justify-center ml-3"> {/* 修改这里 */}
@@ -55,35 +53,29 @@ export function Navigation() {
         <div className="flex items-center space-x-8">
           <button
             onClick={() => scrollToSection("home")}
-            className={`text-2xl px-2 transition-colors duration-200 ${
+            className={`text-3xl font-bold px-2 transition-colors duration-200 ${
               activeSection === "home"
                 ? "text-black"
                 : "text-black/70 hover:text-black"
-            }`}
-            style={{ fontFamily: 'Indie Flower, cursive' }}
-          >
+            }`}>
             Home
           </button>
           <button
             onClick={() => scrollToSection("play")}
-            className={`text-2xl px-2 transition-colors duration-200 ${
+            className={`text-3xl font-bold px-2 transition-colors duration-200 ${
               activeSection === "play"
                 ? "text-black"
                 : "text-black/70 hover:text-black"
-            }`}
-            style={{ fontFamily: 'Indie Flower, cursive' }}
-          >
+            }`}>
             Try
           </button>
           <button
             onClick={() => scrollToSection("about")}
-            className={`text-2xl px-2 transition-colors duration-200 ${
+            className={`text-3xl font-bold px-2 transition-colors duration-200 ${
               activeSection === "about"
                 ? "text-black"
                 : "text-black/70 hover:text-black"
-            }`}
-            style={{ fontFamily: 'Indie Flower, cursive' }}
-          >
+            }`}>
             About
           </button>
           <div className="ml-4">
