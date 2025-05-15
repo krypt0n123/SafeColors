@@ -9,15 +9,17 @@ Smart Address Coloring System - Securing cryptocurrency transactions through vis
 
 ## Project Overview
 
-SafeColors is an innovative address verification tool that enhances blockchain security by adding unique color combinations as visual identifiers, effectively preventing:
+SafeColors is an innovative address security verification tool. By adding unique color combinations to user addresses through encryption algorithms, this tool can effectively prevent the following risks:
 
 - ✅ Phishing attacks using similar addresses
 - ✅ Human verification errors
 - ✅ Malicious address substitution
 
-![Example: Distinct color patterns generated for different addresses]()
+<p align="center">
+  <img src="./public/image.png" alt="new" width="800" style="border-radius: 6px;"/><br>
+</p>
 
 ### Secure Coloring Engine
-- 🎨 Collision-resistant hashing based on keccak256
-- 📱 Responsive color rendering (Colorblind mode supported)
+- 🎨 Collision-resistant hashing based on sha256
+- 📱 Responsive color rendering
 
