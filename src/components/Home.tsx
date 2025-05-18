@@ -44,12 +44,12 @@ export default function Home() {
     <div className=" w-full flex items-center justify-center text-mono">
       <div className=" w-[90vw] max-w-8xl min-h-[70vh] rounded-3xl flex flex-row items-center justify-between bg-gray-900/80 backdrop-blur-lg p-12 shadow-xl">
         {/* 左側 SafeColors 標題與介紹 */}
-        <div className="ml-40 flex-1 flex flex-col items-left justify-center">
+        <div className="ml-20 flex-1 flex flex-col items-left justify-center">
           <h1
-            className="font-bold text-7xl mb-8 bg-gradient-to-r from-[#4dabf7] via-[#a18cd1] to-[#fbc2eb] bg-clip-text text-transparent">
+            className="font-bold text-6xl mb-8 bg-gradient-to-r from-[#4dabf7] via-[#a18cd1] to-[#fbc2eb] bg-clip-text text-transparent">
             Safecolors
           </h1>
-          <div className="text-3xl text-left leading-relaxed whitespace-pre-line">
+          <div className="text-2xl text-left leading-relaxed whitespace-pre-line">
           This tool by wallet address hash into the unique color combination. 
           Users can quickly distinguish different addresses through color combinations,
           simplifies the wallet address alignment process, 
