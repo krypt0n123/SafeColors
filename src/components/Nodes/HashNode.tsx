@@ -7,7 +7,7 @@ interface NodeData extends Record<string, unknown> {
 }
 
 function HashNode({ id, data }: NodeProps<Node<NodeData>>) {
-  const { getNode, updateNodeData, getNodes } = useReactFlow();
+  const { getNode, updateNodeData } = useReactFlow();
 
   const calculateHash = () => {
     const addressNode = getNode('1');
