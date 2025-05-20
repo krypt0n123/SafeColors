@@ -26,7 +26,7 @@ interface UseAddressVisualsResult {
  * 自定义 Hook：useAddressVisuals
  * 用于计算给定地址字符串的 SHA256 哈希值，并从中派生出一组颜色。
  *
- * @param address 需要处理的输入字符串（例如，一个以太坊地址）。
+ * @param address 需要处理的输入字符串（例如，一个地址）。
  * @returns 一个包含 `addressHash` 和 `addressColors` 数组的对象。
  */
 export function useAddressVisuals(address: string): UseAddressVisualsResult {

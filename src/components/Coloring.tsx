@@ -11,7 +11,7 @@ interface ColoringProps {
 
 /**
  * 彩色地址显示组件
- * 用于美化以太坊地址的显示，支持颜色区分、简化显示和差异对比
+ * 用于美化地址的显示，支持颜色区分、简化显示和差异对比
  */
 export function ColoredAddress({ address, idx, coloring, simplify, difference, diffPos }: ColoringProps) {
   if (address === "please connect wallet") {
