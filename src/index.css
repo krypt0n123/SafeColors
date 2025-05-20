@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 覆盖 React Flow 默认节点样式，去除多余的 padding 和固定宽度 */
+.react-flow__node-input,
+.react-flow__node-default,
+.react-flow__node-output,
+.react-flow__node-group {
+  padding: 0 !important;
+  width: auto !important;
+}

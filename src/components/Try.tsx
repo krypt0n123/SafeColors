@@ -4,7 +4,12 @@ import {
   Controls,
   useNodesState,
   useEdgesState,
+  addEdge,
   Background as FlowBackground,
+  type Connection,
+  ConnectionMode,
+  BackgroundVariant,
+  ConnectionLineType,
 } from '@xyflow/react';
  
 import '@xyflow/react/dist/style.css';
@@ -66,6 +71,12 @@ const initialEdges = [
   { id: 'e3-4', source: '3', target: '4', sourceHandle: 'c-bottom', targetHandle: 'd-top', animated: false, type: 'default' },
   { id: 'e4-5', source: '4', target: '5', sourceHandle: 'd-bottom', targetHandle: 'e-top', animated: false, type: 'default' },
 ];
+
+// 默认边配置
+const defaultEdgeOptions = {
+  animated: false,
+  type: 'default',
+};
  
 const CustomNodeFlow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -75,6 +86,14 @@ const CustomNodeFlow = () => {
     setNodes(initialNodes);
     setEdges(initialEdges);
   }, [setNodes, setEdges]);
+
+  const onConnect = useCallback(
+    (params: Connection) => {
+      console.log('Attempting to connect. Params:', params);
+      setEdges((eds) => addEdge(params, eds));
+    },
+    [setEdges]
+  );
  
   return (
     <div className="mt-20 flex flex-col items-center">
@@ -85,12 +104,21 @@ const CustomNodeFlow = () => {
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
           nodeTypes={nodeTypes}
+          connectionMode={ConnectionMode.Loose}
+          elevateEdgesOnSelect={true}
+          zoomOnDoubleClick={false}
+          defaultEdgeOptions={defaultEdgeOptions}
+          snapToGrid={true}
+          snapGrid={[15, 15]}
+          connectionRadius={20}
+          connectionLineType={ConnectionLineType.Bezier}
           fitView
           className="bg-transparent"
           >
           <Controls className="bg-white/5 backdrop-blur-sm border border-white/10" />
-          <FlowBackground className="bg-transparent" />
+          <FlowBackground className="bg-transparent" variant={BackgroundVariant.Dots} gap={12} size={1} />
           <div className="absolute top-4 right-4 z-10">
             <button
               onClick={handleRestore}
