@@ -16,22 +16,24 @@ Smart Address Coloring System - Securing cryptocurrency transactions through vis
 - ✅ Malicious address substitution
 
 <p align="center">
-  <img src="./public/image.png" alt="new" width="800" style="border-radius: 6px;"/><br>
+  <img src="./public/example.png" alt="new" width="500" style="border-radius: 6px";/>
+  <br>
 </p>
 
 ### The principle of wallet address dyeing algorithm
 
+
 #### 1.   Hash generation
 - Perform the SHA-256 encryption hash operation on the target wallet address to generate a hexadecimal string of a fixed length
-
 #### 2.   Segment coding
 - Take the first 48 hash values and split them into 8 groups in sequence, with each group containing 6 consecutive hexadecimal characters
-
 #### 3.   Color mapping
 - Parse each group of 6-digit characters into RGB color values (format: #RRGGBB), and generate 8 corresponding standard hexadecimal color codes
-
 #### 4.   Dynamic rendering
 - Based on the generated color sequence, the wallet address characters are colored to achieve address coloring
+<p align="center">
+  <img src="./public/flowchart.png" alt="new" width="600" style="border-radius: 6px;"/><br>
+</p>
 
 ### Homepage
 - https://safe-colors.vercel.app/

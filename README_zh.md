@@ -15,7 +15,8 @@
 - ✅ 恶意地址替换
 
 <p align="center">
-  <img src="./public/example.png" alt="new" width="500" style="border-radius: 6px;"/><br>
+  <img src="./public/example.png" alt="new" width="500" style="border-radius: 6px;"/>
+  <br>
 </p>
 
 ### 钱包地址染色算法原理
@@ -33,7 +34,8 @@
 - 根据生成的色彩序列，对钱包地址字符进行分段着色，实现地址染色
 
 <p align="center">
-  <img src="./public/flowchart.png" alt="new" width="500" style="border-radius: 6px;"/><br>
+  <img src="./public/flowchart.png" alt="new" width="500" style="border-radius: 6px;"/>
+  <br>
 </p>
 
 ### 体验地址
